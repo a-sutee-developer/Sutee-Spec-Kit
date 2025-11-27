@@ -39,6 +39,16 @@ env/
 .env.local
 *.lock
 
+# Java
+target/
+*.class
+*.jar
+*.war
+*.ear
+.mvn/
+mvnw
+mvnw.cmd
+
 # Spec Kit-specific files
 .genreleases/
 *.zip

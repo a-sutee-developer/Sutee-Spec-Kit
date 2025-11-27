@@ -1,50 +1,58 @@
 #!/usr/bin/env bash
 
+# 更新代理上下文脚本 - 从 plan.md 文件中提取信息更新代理上下文文件
 # Update agent context files with information from plan.md
 #
-# This script maintains AI agent context files by parsing feature specifications 
+# 此脚本通过解析功能规范并使用项目信息更新代理特定的配置文件来维护 AI 代理上下文文件
+# This script maintains AI agent context files by parsing feature specifications
 # and updating agent-specific configuration files with project information.
 #
+# 主要功能：
 # MAIN FUNCTIONS:
-# 1. Environment Validation
-#    - Verifies git repository structure and branch information
-#    - Checks for required plan.md files and templates
-#    - Validates file permissions and accessibility
+# 1. 环境验证 / Environment Validation
+#    - 验证 git 仓库结构和分支信息 / Verifies git repository structure and branch information
+#    - 检查必需的 plan.md 文件和模板 / Checks for required plan.md files and templates
+#    - 验证文件权限和可访问性 / Validates file permissions and accessibility
 #
-# 2. Plan Data Extraction
-#    - Parses plan.md files to extract project metadata
-#    - Identifies language/version, frameworks, databases, and project types
-#    - Handles missing or incomplete specification data gracefully
+# 2. 计划数据提取 / Plan Data Extraction
+#    - 解析 plan.md 文件以提取项目元数据 / Parses plan.md files to extract project metadata
+#    - 识别语言/版本、框架、数据库和项目类型 / Identifies language/version, frameworks, databases, and project types
+#    - 优雅地处理缺失或不完整的规范数据 / Handles missing or incomplete specification data gracefully
 #
-# 3. Agent File Management
-#    - Creates new agent context files from templates when needed
-#    - Updates existing agent files with new project information
-#    - Preserves manual additions and custom configurations
-#    - Supports multiple AI agent formats and directory structures
+# 3. 代理文件管理 / Agent File Management
+#    - 需要时从模板创建新的代理上下文文件 / Creates new agent context files from templates when needed
+#    - 使用新项目信息更新现有代理文件 / Updates existing agent files with new project information
+#    - 保留手动添加和自定义配置 / Preserves manual additions and custom configurations
+#    - 支持多种 AI 代理格式和目录结构 / Supports multiple AI agent formats and directory structures
 #
-# 4. Content Generation
-#    - Generates language-specific build/test commands
-#    - Creates appropriate project directory structures
-#    - Updates technology stacks and recent changes sections
-#    - Maintains consistent formatting and timestamps
+# 4. 内容生成 / Content Generation
+#    - 生成特定语言的构建/测试命令 / Generates language-specific build/test commands
+#    - 创建适当的项目目录结构 / Creates appropriate project directory structures
+#    - 更新技术栈和最近更改部分 / Updates technology stacks and recent changes sections
+#    - 维护一致的格式和时间戳 / Maintains consistent formatting and timestamps
 #
-# 5. Multi-Agent Support
-#    - Handles agent-specific file paths and naming conventions
-#    - Supports: Claude, Gemini, Copilot, Cursor, Qwen, opencode, Codex, Windsurf, Kilo Code, Auggie CLI, Roo Code, CodeBuddy CLI, Amp, or Amazon Q Developer CLI
-#    - Can update single agents or all existing agent files
-#    - Creates default Claude file if no agent files exist
+# 5. 多代理支持 / Multi-Agent Support
+#    - 处理代理特定的文件路径和命名约定 / Handles agent-specific file paths and naming conventions
+#    - 支持：Claude, Gemini, Copilot, Cursor, Qwen, opencode, Codex, Windsurf, Kilo Code, Auggie CLI, Roo Code, CodeBuddy CLI, Amp, 或 Amazon Q Developer CLI
+#    - 可以更新单个代理或所有现有代理文件 / Can update single agents or all existing agent files
+#    - 如果不存在代理文件则创建默认 Claude 文件 / Creates default Claude file if no agent files exist
 #
+# 用法：./update-agent-context.sh [agent_type]
 # Usage: ./update-agent-context.sh [agent_type]
+# 代理类型：claude|gemini|copilot|cursor-agent|qwen|opencode|codex|windsurf|kilocode|auggie|q
 # Agent types: claude|gemini|copilot|cursor-agent|qwen|opencode|codex|windsurf|kilocode|auggie|q
+# 留空以更新所有现有代理文件
 # Leave empty to update all existing agent files
 
 set -e
 
+# 启用严格错误处理
 # Enable strict error handling
 set -u
 set -o pipefail
 
 #==============================================================================
+# 配置和全局变量
 # Configuration and Global Variables
 #==============================================================================
 
