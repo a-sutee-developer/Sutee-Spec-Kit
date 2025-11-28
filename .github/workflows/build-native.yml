@@ -20,16 +20,16 @@ jobs:
         include:
           - platform: macos-amd64
             os: macos-13
-            artifact: specify-macos-amd64
+            artifact: sutee.specify-macos-amd64
           - platform: macos-arm64
             os: macos-14
-            artifact: specify-macos-arm64
+            artifact: sutee.specify-macos-arm64
           - platform: linux-amd64
             os: ubuntu-latest
-            artifact: specify-linux-amd64
+            artifact: sutee.specify-linux-amd64
           - platform: windows-amd64
             os: windows-latest
-            artifact: specify-windows-amd64.exe
+            artifact: sutee.specify-windows-amd64.exe
 
     steps:
       - name: Checkout
@@ -78,13 +78,13 @@ jobs:
       - name: Rename artifact (Unix)
         if: runner.os != 'Windows'
         run: |
-          mv target/specify target/${{ matrix.artifact }}
+          mv target/sutee.specify target/${{ matrix.artifact }}
           chmod +x target/${{ matrix.artifact }}
 
       - name: Rename artifact (Windows)
         if: runner.os == 'Windows'
         run: |
-          move target\specify.exe target\${{ matrix.artifact }}
+          move target\sutee.specify.exe target\${{ matrix.artifact }}
 
       - name: Upload Native artifact
         uses: actions/upload-artifact@v4
@@ -102,13 +102,13 @@ jobs:
       matrix:
         include:
           - os: macos-13
-            artifact: specify-macos-amd64
+            artifact: sutee.specify-macos-amd64
           - os: macos-14
-            artifact: specify-macos-arm64
+            artifact: sutee.specify-macos-arm64
           - os: ubuntu-latest
-            artifact: specify-linux-amd64
+            artifact: sutee.specify-linux-amd64
           - os: windows-latest
-            artifact: specify-windows-amd64.exe
+            artifact: sutee.specify-windows-amd64.exe
 
     steps:
       - name: Download artifact

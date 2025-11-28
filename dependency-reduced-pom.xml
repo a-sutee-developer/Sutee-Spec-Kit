@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.github.speckit</groupId>
-  <artifactId>specify-cli</artifactId>
+  <groupId>com.github.sutee</groupId>
+  <artifactId>sutee-cli</artifactId>
   <name>Specify CLI (Java)</name>
   <version>0.0.20</version>
   <description>GitHub Spec Kit - Spec-Driven Development Toolkit (Java Implementation)</description>
   <build>
     <resources>
       <resource>
-        <targetPath>META-INF/spec-kit/templates</targetPath>
+        <targetPath>META-INF/sutee-spec-kit/templates</targetPath>
         <directory>.genreleases</directory>
         <includes>
-          <include>spec-kit-template-*.zip</include>
+          <include>sutee-spec-kit-template-*.zip</include>
         </includes>
       </resource>
       <resource>
@@ -54,7 +54,7 @@
                   <mainClass>com.github.speckit.SpecifyCli</mainClass>
                 </transformer>
               </transformers>
-              <finalName>specify-cli-${project.version}</finalName>
+              <finalName>sutee-cli-${project.version}</finalName>
             </configuration>
           </execution>
         </executions>
@@ -88,6 +88,29 @@
           <plugin>
             <groupId>org.graalvm.buildtools</groupId>
             <artifactId>native-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>build-native</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>compile-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <skip>false</skip>
+              <imageName>sutee.specify</imageName>
+              <mainClass>com.github.speckit.SpecifyCli</mainClass>
+              <buildArgs>
+                <buildArg>--no-fallback</buildArg>
+                <buildArg>--enable-url-protocols=https</buildArg>
+                <buildArg>-H:+ReportExceptionStackTraces</buildArg>
+                <buildArg>-H:IncludeResources=META-INF/sutee-spec-kit/templates/.*</buildArg>
+                <buildArg>--initialize-at-build-time=org.fusesource.jansi</buildArg>
+                <buildArg>-H:ReflectionConfigurationFiles=src/main/resources/META-INF/native-image/com.github.sutee/sutee-cli/reflect-config.json</buildArg>
+                <buildArg>-H:ResourceConfigurationFiles=src/main/resources/META-INF/native-image/com.github.sutee/sutee-cli/resource-config.json</buildArg>
+              </buildArgs>
+            </configuration>
           </plugin>
         </plugins>
       </build>

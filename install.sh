@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Download and install Specify CLI from GitHub Releases
+# Download and install Sutee CLI from GitHub Releases
 
 set -euo pipefail
 
 REPO="a-sutee-developer/Sutee-Spec-Kit"
 VERSION="${1:-latest}"
 
-echo "=== Specify CLI 安装器 ==="
+echo "=== Sutee CLI 安装器 ==="
 echo
 
 # Detect platform
@@ -20,15 +20,15 @@ case "$OS" in
         else
             PLATFORM="macos-amd64"
         fi
-        BINARY_NAME="specify"
+        BINARY_NAME="sutee.specify"
         ;;
     Linux)
         PLATFORM="linux-amd64"
-        BINARY_NAME="specify"
+        BINARY_NAME="sutee.specify"
         ;;
     MINGW*|MSYS*|CYGWIN*)
         PLATFORM="windows-amd64"
-        BINARY_NAME="specify.exe"
+        BINARY_NAME="sutee.specify.exe"
         ;;
     *)
         echo "❌ 不支持的操作系统: $OS"
@@ -44,16 +44,16 @@ echo
 if [[ "$VERSION" == "latest" ]]; then
     echo "获取最新版本..."
     if [[ "$PLATFORM" == "windows-amd64" ]]; then
-        DOWNLOAD_URL="https://raw.githubusercontent.com/$REPO/main/dist/specify-${PLATFORM}.exe.gz"
+        DOWNLOAD_URL="https://raw.githubusercontent.com/$REPO/main/dist/sutee.specify-${PLATFORM}.exe.gz"
     else
-        DOWNLOAD_URL="https://raw.githubusercontent.com/$REPO/main/dist/specify-${PLATFORM}.gz"
+        DOWNLOAD_URL="https://raw.githubusercontent.com/$REPO/main/dist/sutee.specify-${PLATFORM}.gz"
     fi
     COMPRESSED=true
 else
     if [[ "$PLATFORM" == "windows-amd64" ]]; then
-        DOWNLOAD_URL="https://github.com/$REPO/releases/download/${VERSION}/specify-${PLATFORM}.exe"
+        DOWNLOAD_URL="https://github.com/$REPO/releases/download/${VERSION}/sutee.specify-${PLATFORM}.exe"
     else
-        DOWNLOAD_URL="https://github.com/$REPO/releases/download/${VERSION}/specify-${PLATFORM}"
+        DOWNLOAD_URL="https://github.com/$REPO/releases/download/${VERSION}/sutee.specify-${PLATFORM}"
     fi
     COMPRESSED=false
 fi

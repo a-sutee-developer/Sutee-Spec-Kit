@@ -5,8 +5,8 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     
-    <groupId>com.github.speckit</groupId>
-    <artifactId>specify-cli</artifactId>
+    <groupId>com.github.sutee</groupId>
+    <artifactId>sutee-cli</artifactId>
     <version>0.0.20</version>
     <packaging>jar</packaging>
     
@@ -115,7 +115,7 @@
                                     <mainClass>com.github.speckit.SpecifyCli</mainClass>
                                 </transformer>
                             </transformers>
-                            <finalName>specify-cli-${project.version}</finalName>
+                            <finalName>sutee-cli-${project.version}</finalName>
                         </configuration>
                     </execution>
                 </executions>
@@ -158,7 +158,7 @@
                         <artifactId>native-maven-plugin</artifactId>
                         <configuration>
                             <skip>false</skip>
-                            <imageName>specify</imageName>
+                            <imageName>sutee.specify</imageName>
                             <mainClass>com.github.speckit.SpecifyCli</mainClass>
                             <buildArgs>
                                 <buildArg>--no-fallback</buildArg>
@@ -166,8 +166,8 @@
                                 <buildArg>-H:+ReportExceptionStackTraces</buildArg>
                                 <buildArg>-H:IncludeResources=META-INF/sutee-spec-kit/templates/.*</buildArg>
                                 <buildArg>--initialize-at-build-time=org.fusesource.jansi</buildArg>
-                                <buildArg>-H:ReflectionConfigurationFiles=src/main/resources/META-INF/native-image/com.github.speckit/specify-cli/reflect-config.json</buildArg>
-                                <buildArg>-H:ResourceConfigurationFiles=src/main/resources/META-INF/native-image/com.github.speckit/specify-cli/resource-config.json</buildArg>
+                                <buildArg>-H:ReflectionConfigurationFiles=src/main/resources/META-INF/native-image/com.github.sutee/sutee-cli/reflect-config.json</buildArg>
+                                <buildArg>-H:ResourceConfigurationFiles=src/main/resources/META-INF/native-image/com.github.sutee/sutee-cli/resource-config.json</buildArg>
                             </buildArgs>
                         </configuration>
                         <executions>
