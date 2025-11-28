@@ -63,6 +63,18 @@
     </dependencies>
     
     <build>
+        <resources>
+            <resource>
+                <directory>.genreleases</directory>
+                <includes>
+                    <include>spec-kit-template-*.zip</include>
+                </includes>
+                <targetPath>META-INF/spec-kit/templates</targetPath>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
         <plugins>
             <!-- Compiler Plugin -->
             <plugin>

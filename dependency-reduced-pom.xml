@@ -7,6 +7,18 @@
   <version>0.0.20</version>
   <description>GitHub Spec Kit - Spec-Driven Development Toolkit (Java Implementation)</description>
   <build>
+    <resources>
+      <resource>
+        <targetPath>META-INF/spec-kit/templates</targetPath>
+        <directory>.genreleases</directory>
+        <includes>
+          <include>spec-kit-template-*.zip</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
