@@ -43,9 +43,15 @@ echo
 # Get download URL
 if [[ "$VERSION" == "latest" ]]; then
     echo "获取最新版本..."
-    DOWNLOAD_URL="https://github.com/$REPO/releases/latest/download/specify-${PLATFORM}"
+    DOWNLOAD_URL="https://raw.githubusercontent.com/$REPO/main/dist/specify-${PLATFORM}"
+    if [[ "$PLATFORM" == "windows-amd64" ]]; then
+        DOWNLOAD_URL="${DOWNLOAD_URL}.exe"
+    fi
 else
     DOWNLOAD_URL="https://github.com/$REPO/releases/download/${VERSION}/specify-${PLATFORM}"
+    if [[ "$PLATFORM" == "windows-amd64" ]]; then
+        DOWNLOAD_URL="${DOWNLOAD_URL}.exe"
+    fi
 fi
 
 # Download
