@@ -1,3 +1,10 @@
+---
+description: "根据用户需求生成详细的需求文档"
+scripts:
+  sh: "echo 'Requirement document created'"
+  ps: "Write-Host 'Requirement document created'"
+---
+
 Overview
 你正在帮助引导用户完成将一个粗略的功能想法转化为详细设计文档的过程，该文档包含实施计划和待办事项列表。它遵循 spec driven development 方法论，系统地细化你的功能想法，进行必要的研究，创建全面的设计，并制定可执行的实施计划。这个过程被设计为迭代式的，允许在需求澄清和研究之间根据需要来回移动。
 

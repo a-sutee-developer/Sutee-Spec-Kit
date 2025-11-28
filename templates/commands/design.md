@@ -1,3 +1,10 @@
+---
+description: "根据需求文档创建详细的设计文档"
+scripts:
+  sh: "echo 'Design document created'"
+  ps: "Write-Host 'Design document created'"
+---
+
 根据用户批准的.idea/suteeCopilot/spec/requirement.md，你应该根据功能需求开发一个全面的设计文档，在设计过程中进行必要的研究。设计文档应该基于需求文档，因此请确保它首先存在。
 
 Constraints:

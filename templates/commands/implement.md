@@ -1,3 +1,10 @@
+---
+description: "根据设计和任务文档完成具体实现"
+scripts:
+  sh: "echo 'Implementation completed'"
+  ps: "Write-Host 'Implementation completed'"
+---
+
 根据需求文档（.idea/suteeCopilot/spec/requirement.md）和设计文档（.idea/suteeCopilot/spec/design.md）以及编码任务文档（.idea/suteeCopilot/spec/tasks.md'）来完成用户的需求
 Constraints:
 模型需要按照task.md中定义的任务顺序来执行编码任务

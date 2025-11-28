@@ -1,3 +1,10 @@
+---
+description: "根据设计生成可执行的任务清单"
+scripts:
+  sh: "echo 'Task list created'"
+  ps: "Write-Host 'Task list created'"
+---
+
 根据需求文档（.idea/suteeCopilot/spec/requirement.md）和设计文档（.idea/suteeCopilot/spec/design.md）创建一个可执行的实施计划，其中包含编码任务的检查清单。任务文档应该基于需求文档和设计文档，因此请确保它首先存在。
 Constraints:
 如果 '.idea/suteeCopilot/spec/tasks.md' 文件不存在，模型必须创建它

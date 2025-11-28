@@ -34,6 +34,9 @@ jobs:
             echo "VERSION=${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
           fi
 
+      - name: Install zip utility
+        run: sudo apt-get update && sudo apt-get install -y zip
+
       - name: Build template packages
         run: |
           chmod +x .github/workflows/scripts/create-release-packages.sh
@@ -98,6 +101,19 @@ jobs:
             echo "VERSION=${{ inputs.version }}" >> $GITHUB_OUTPUT
           else
             echo "VERSION=${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Install zip utility
+        shell: bash
+        run: |
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            sudo apt-get update && sudo apt-get install -y zip
+          elif [ "$RUNNER_OS" == "macOS" ]; then
+            # macOS already has zip
+            echo "zip already installed"
+          elif [ "$RUNNER_OS" == "Windows" ]; then
+            # Windows already has zip via PowerShell
+            echo "zip already available"
           fi
 
       - name: Build template packages
