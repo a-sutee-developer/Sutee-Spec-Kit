@@ -112,8 +112,8 @@ jobs:
             # macOS already has zip
             echo "zip already installed"
           elif [ "$RUNNER_OS" == "Windows" ]; then
-            # Windows already has zip via PowerShell
-            echo "zip already available"
+            # Install zip for Windows via choco
+            choco install zip -y
           fi
 
       - name: Build template packages
