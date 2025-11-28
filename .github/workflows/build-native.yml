@@ -53,6 +53,7 @@ jobs:
           retention-days: 7
 
       - name: Upload JAR to Release
+        if: steps.version.outputs.VERSION != ''
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.version.outputs.VERSION }}
@@ -144,6 +145,7 @@ jobs:
           retention-days: 7
 
       - name: Upload Native to Release
+        if: steps.version.outputs.VERSION != ''
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.version.outputs.VERSION }}
