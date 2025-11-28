@@ -52,10 +52,10 @@ jobs:
           path: target/specify-cli-*.jar
           retention-days: 7
 
-      - name: Upload to Release
-        if: github.event_name == 'release'
+      - name: Upload JAR to Release
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: ${{ steps.version.outputs.VERSION }}
           files: target/specify-cli-*.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -143,10 +143,10 @@ jobs:
           path: target/${{ matrix.artifact }}
           retention-days: 7
 
-      - name: Upload to Release
-        if: github.event_name == 'release'
+      - name: Upload Native to Release
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: ${{ steps.version.outputs.VERSION }}
           files: target/${{ matrix.artifact }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
