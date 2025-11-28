@@ -67,9 +67,9 @@
             <resource>
                 <directory>.genreleases</directory>
                 <includes>
-                    <include>spec-kit-template-*.zip</include>
+                    <include>sutee-spec-kit-template-*.zip</include>
                 </includes>
-                <targetPath>META-INF/spec-kit/templates</targetPath>
+                <targetPath>META-INF/sutee-spec-kit/templates</targetPath>
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
@@ -164,7 +164,7 @@
                                 <buildArg>--no-fallback</buildArg>
                                 <buildArg>--enable-url-protocols=https</buildArg>
                                 <buildArg>-H:+ReportExceptionStackTraces</buildArg>
-                                <buildArg>-H:IncludeResources=META-INF/spec-kit/templates/.*</buildArg>
+                                <buildArg>-H:IncludeResources=META-INF/sutee-spec-kit/templates/.*</buildArg>
                                 <buildArg>--initialize-at-build-time=org.fusesource.jansi</buildArg>
                                 <buildArg>-H:ReflectionConfigurationFiles=src/main/resources/META-INF/native-image/com.github.speckit/specify-cli/reflect-config.json</buildArg>
                                 <buildArg>-H:ResourceConfigurationFiles=src/main/resources/META-INF/native-image/com.github.speckit/specify-cli/resource-config.json</buildArg>

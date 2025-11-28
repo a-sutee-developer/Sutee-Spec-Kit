@@ -23,7 +23,7 @@ public class GithubService {
     
     private static final String REPO_OWNER = "a-sutee-developer";
     private static final String REPO_NAME = "Sutee-Spec-Kit";
-    private static final String EMBEDDED_DIR = "META-INF/spec-kit/templates/";
+    private static final String EMBEDDED_DIR = "META-INF/sutee-spec-kit/templates/";
     private final OkHttpClient client;
     
     public GithubService() {
@@ -34,7 +34,7 @@ public class GithubService {
     }
     
     public Path downloadTemplate(String agent, String scriptType) throws IOException {
-        String pattern = String.format("spec-kit-template-%s-%s", agent, scriptType);
+        String pattern = String.format("sutee-spec-kit-template-%s-%s", agent, scriptType);
         
         // 0. Try embedded resources inside the running JAR first
         Path embedded = findEmbeddedTemplate(pattern);
@@ -125,7 +125,7 @@ public class GithubService {
         for (String version : versions) {
             for (String agent : agents) {
                 for (String script : scripts) {
-                    String resourceName = String.format("%sspec-kit-template-%s-%s-%s.zip", 
+                    String resourceName = String.format("%ssutee-spec-kit-template-%s-%s-%s.zip", 
                                                        EMBEDDED_DIR, agent, script, version);
                     if (resourceName.contains(pattern)) {
                         InputStream is = cl.getResourceAsStream(resourceName);

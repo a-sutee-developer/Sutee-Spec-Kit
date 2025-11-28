@@ -171,10 +171,9 @@ public class InitCommand implements Callable<Integer> {
             ConsoleUtils.info("1. cd " + projectName);
         }
         ConsoleUtils.info("2. 使用 AI 助手的斜杠命令：");
-        ConsoleUtils.info("   - /speckit.constitution - 建立项目原则");
-        ConsoleUtils.info("   - /speckit.specify - 创建基线规范");
-        ConsoleUtils.info("   - /speckit.plan - 创建实现计划");
-        ConsoleUtils.info("   - /speckit.tasks - 生成可执行任务");
-        ConsoleUtils.info("   - /speckit.implement - 执行实现");
+        ConsoleUtils.info("   - /sutee.requirement - 需求扩写");
+        ConsoleUtils.info("   - /sutee.design - 技术细节设计");
+        ConsoleUtils.info("   - /sutee.task - 创建实现计划");
+        ConsoleUtils.info("   - /sutee.implement - 执行实现");
     }
 }
