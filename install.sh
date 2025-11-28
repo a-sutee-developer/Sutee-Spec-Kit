@@ -43,15 +43,19 @@ echo
 # Get download URL
 if [[ "$VERSION" == "latest" ]]; then
     echo "获取最新版本..."
-    DOWNLOAD_URL="https://raw.githubusercontent.com/$REPO/main/dist/specify-${PLATFORM}"
     if [[ "$PLATFORM" == "windows-amd64" ]]; then
-        DOWNLOAD_URL="${DOWNLOAD_URL}.exe"
+        DOWNLOAD_URL="https://raw.githubusercontent.com/$REPO/main/dist/specify-${PLATFORM}.exe.gz"
+    else
+        DOWNLOAD_URL="https://raw.githubusercontent.com/$REPO/main/dist/specify-${PLATFORM}.gz"
     fi
+    COMPRESSED=true
 else
-    DOWNLOAD_URL="https://github.com/$REPO/releases/download/${VERSION}/specify-${PLATFORM}"
     if [[ "$PLATFORM" == "windows-amd64" ]]; then
-        DOWNLOAD_URL="${DOWNLOAD_URL}.exe"
+        DOWNLOAD_URL="https://github.com/$REPO/releases/download/${VERSION}/specify-${PLATFORM}.exe"
+    else
+        DOWNLOAD_URL="https://github.com/$REPO/releases/download/${VERSION}/specify-${PLATFORM}"
     fi
+    COMPRESSED=false
 fi
 
 # Download
@@ -64,13 +68,29 @@ echo "来源: $DOWNLOAD_URL"
 echo "目标: $TARGET"
 echo
 
-if command -v curl &> /dev/null; then
-    curl -L -o "$TARGET" "$DOWNLOAD_URL"
-elif command -v wget &> /dev/null; then
-    wget -O "$TARGET" "$DOWNLOAD_URL"
+if [[ "$COMPRESSED" == "true" ]]; then
+    TEMP_FILE="$TARGET.gz"
+    if command -v curl &> /dev/null; then
+        curl -L -o "$TEMP_FILE" "$DOWNLOAD_URL"
+    elif command -v wget &> /dev/null; then
+        wget -O "$TEMP_FILE" "$DOWNLOAD_URL"
+    else
+        echo "❌ 需要 curl 或 wget 才能下载"
+        exit 1
+    fi
+    
+    echo "解压中..."
+    gunzip -c "$TEMP_FILE" > "$TARGET"
+    rm "$TEMP_FILE"
 else
-    echo "❌ 需要 curl 或 wget 才能下载"
-    exit 1
+    if command -v curl &> /dev/null; then
+        curl -L -o "$TARGET" "$DOWNLOAD_URL"
+    elif command -v wget &> /dev/null; then
+        wget -O "$TARGET" "$DOWNLOAD_URL"
+    else
+        echo "❌ 需要 curl 或 wget 才能下载"
+        exit 1
+    fi
 fi
 
 chmod +x "$TARGET"
