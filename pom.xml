@@ -156,6 +156,29 @@
                     <plugin>
                         <groupId>org.graalvm.buildtools</groupId>
                         <artifactId>native-maven-plugin</artifactId>
+                        <configuration>
+                            <skip>false</skip>
+                            <imageName>specify</imageName>
+                            <mainClass>com.github.speckit.SpecifyCli</mainClass>
+                            <buildArgs>
+                                <buildArg>--no-fallback</buildArg>
+                                <buildArg>--enable-url-protocols=https</buildArg>
+                                <buildArg>-H:+ReportExceptionStackTraces</buildArg>
+                                <buildArg>-H:IncludeResources=META-INF/spec-kit/templates/.*</buildArg>
+                                <buildArg>--initialize-at-build-time=org.fusesource.jansi</buildArg>
+                                <buildArg>-H:ReflectionConfigurationFiles=src/main/resources/META-INF/native-image/com.github.speckit/specify-cli/reflect-config.json</buildArg>
+                                <buildArg>-H:ResourceConfigurationFiles=src/main/resources/META-INF/native-image/com.github.speckit/specify-cli/resource-config.json</buildArg>
+                            </buildArgs>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>build-native</id>
+                                <goals>
+                                    <goal>compile-no-fork</goal>
+                                </goals>
+                                <phase>package</phase>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
