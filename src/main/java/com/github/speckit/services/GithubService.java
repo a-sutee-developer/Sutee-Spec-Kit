@@ -120,7 +120,7 @@ public class GithubService {
         String[] agents = {"claude", "gemini", "copilot", "cursor-agent", "qwen", "opencode", 
                           "windsurf", "codex", "kilocode", "auggie", "roo", "codebuddy", "amp", "q"};
         String[] scripts = {"sh", "ps"};
-        String[] versions = {"v0.0.103", "v0.0.102", "v0.0.101", "v0.0.100"};
+        String[] versions = {"v0.0.4", "v0.0.103", "v0.0.102", "v0.0.101", "v0.0.100"};
         
         for (String version : versions) {
             for (String agent : agents) {
