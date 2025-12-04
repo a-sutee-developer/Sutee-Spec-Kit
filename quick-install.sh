@@ -5,8 +5,9 @@
 set -euo pipefail
 
 # 配置
-REPO_HOST="github.com"
+REPO_HOST="raw.githubusercontent.com"
 REPO_PATH="a-sutee-developer/Sutee-Spec-Kit"
+REPO_BRANCH="test"  # 分支名称
 VERSION="0.0.20"
 INSTALL_DIR="$HOME/.local/bin"
 BINARY_NAME="sutee"
@@ -84,9 +85,9 @@ main() {
     success "检测到平台: $platform"
     echo ""
     
-    # 构建下载 URL
+    # 构建下载 URL (从 GitHub raw 地址下载)
     local package_name="sutee-spec-kit-v${VERSION}-${platform}.tar.gz"
-    local download_url="https://${REPO_HOST}/${REPO_PATH}/releases/download/v${VERSION}/${package_name}"
+    local download_url="https://${REPO_HOST}/${REPO_PATH}/${REPO_BRANCH}/${package_name}"
     
     info "准备下载 Sutee CLI v${VERSION}..."
     echo ""
@@ -104,7 +105,7 @@ main() {
         error "下载失败"
         echo ""
         warning "提示: 请检查网络连接或版本号是否正确"
-        warning "如果问题持续，请访问: https://${REPO_HOST}/${REPO_PATH}/releases"
+        warning "如果问题持续，请访问: https://github.com/${REPO_PATH}/tree/${REPO_BRANCH}"
         exit 1
     fi
     success "下载完成"
